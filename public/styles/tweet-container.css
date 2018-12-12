@@ -1,0 +1,70 @@
+/***   Tweet Container CSS File   ***/
+
+
+article.tweet {
+  margin-left: 2em;
+  margin-right: 2em;
+  margin-bottom: 20px;
+  border: 1px solid lightgrey;
+  border-radius: 10px;
+  opacity: 0.6;
+}
+
+article.tweet:hover {
+opacity: 1;
+}
+
+article.tweet header {
+  height: 80px;
+  padding: 10px;
+  background-color: #eee;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+article.tweet header img {
+  float: left;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+article.tweet header h2 {
+  float: left;
+  font-size: 32px;
+
+}
+
+article.tweet header h3 {
+  float: right;
+  font-size: 16px;
+  color: #606060;
+}
+
+article.tweet p {
+  vertical-align: left;
+  padding: 10px;
+  padding-bottom: 20px;
+}
+
+article.tweet footer {
+  padding: 10px;
+  border-top: 1px solid lightgrey;
+  font-size: 14px;
+}
+
+article.tweet footer img {
+  float: right;
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  visibility: hidden;
+}
+
+article.tweet:hover footer img {
+visibility: visible;
+}
+
+

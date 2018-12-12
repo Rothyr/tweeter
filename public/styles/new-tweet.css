@@ -1,0 +1,41 @@
+/*   NEW TWEET CSS FILE   */
+
+
+
+.new-tweet {
+  background-color: #eee;
+  padding: 10px;
+  margin-left: 2em;
+  margin-right: 2em;
+  margin-bottom: 20px;
+  border: 1px solid lightgrey;
+  border-radius: 10px;
+}
+
+.new-tweet h2 {
+  margin-top: 5px;
+  margin-bottom: 10px;
+  font-size: 40px;
+  border-bottom: 2px solid #244751;
+}
+
+  textarea {
+  border: 1px solid lightgrey;
+  border-radius: 10px;
+  padding: 5px;
+  width: 100%;
+  }
+
+  .submitButton {
+    border: 1px solid lightgrey;
+    border-radius: 10px;
+  }
+
+.counter {
+  float: right;
+  color: black;
+}
+
+.negativeCounter {
+  color: red;
+}
