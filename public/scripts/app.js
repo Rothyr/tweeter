@@ -4,34 +4,11 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 $('#document').ready(function(event) {
-
-//   function loadTweets () {
-//   var $button = $('tweet-container');
-//   $button.on('click', function () {
-//     console.log('Button clicked, performing AJAX call...');
-//     $.ajax('"/tweets', { method: 'GET' })
-//     .then(function (renderTweets) {
-//       console.log('Success: ', renderTweets);
-//       $button.replaceWith(renderTweets);
-//     });
-//   });
-// }
-
 function loadTweets(){
-    //load the tweets from the route /tweets - GET
 
     $.ajax({
       url: '/tweets',
       method:'GET',
-      // success:function(result){
-      //   console.log("After ajax call");
-      //   console.log(result);
-      //   renderTweets(result);
-      // },
-      // error: function(error){
-      //   console.log("there was an error");
-      //   console.log(error);
-      // }
     })
     .then(renderTweets);
   }
@@ -96,6 +73,7 @@ function loadTweets(){
         loadTweets();
         $('#tweetSubmitter').get(0).reset();
         $('.error').hide();
+        $('.counter').text("140");
       });
     }
   })
@@ -105,12 +83,5 @@ function loadTweets(){
     $(".messageText").focus();
   });
 
-  // * TEST CODE TO MIMIC RELOAD * //
-  // setTimeout(() => {
-  //   renderTweets(data)
-  // }, 1000);
-
-  //renderTweets(data)
   loadTweets();
-
 });
