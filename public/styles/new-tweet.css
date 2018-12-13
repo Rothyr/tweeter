@@ -10,6 +10,7 @@
   margin-bottom: 20px;
   border: 1px solid lightgrey;
   border-radius: 10px;
+  display: none;
 }
 
 .new-tweet h2 {
@@ -26,9 +27,9 @@
   width: 100%;
   }
 
-  .submitButton {
-    border: 1px solid lightgrey;
-    border-radius: 10px;
+#submitButton {
+  border: 1px solid lightgrey;
+  border-radius: 10px;
   }
 
 .counter {
@@ -38,4 +39,13 @@
 
 .negativeCounter {
   color: red;
+}
+
+.error {
+  background: red;
+  color: white;
+  border: 1px solid red;
+  border-radius: 5px;
+  padding: 5px;
+  display: none;
 }

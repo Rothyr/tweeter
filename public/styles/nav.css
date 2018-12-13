@@ -28,3 +28,23 @@
   height: 80px;
   width: 99.53px;
 }
+
+#nav-bar button {
+  height: 50px;
+  width: 100px;
+  margin-top: 15px;
+  border: 1px solid black;
+  border-radius: 5px;
+  float: right;
+  opacity: 0.7;
+}
+
+#nav-bar button:hover {
+  height: 50px;
+  width: 100px;
+  margin-top: 15px;
+  border: 1px solid black;
+  border-radius: 5px;
+  float: right;
+  opacity: 1;
+}

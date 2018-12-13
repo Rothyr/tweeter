@@ -3,56 +3,38 @@
  * jQuery is already loaded
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
-$('#document').ready(function(e) {
+$('#document').ready(function(event) {
 
-  // Fake data taken from tweets.json
-  const data = [
-    {
-      "user": {
-        "name": "Newton",
-        "avatars": {
-          "small":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_50.png",
-          "regular": "https://vanillicon.com/788e533873e80d2002fa14e1412b4188.png",
-          "large":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_200.png"
-        },
-        "handle": "@SirIsaac"
-      },
-      "content": {
-        "text": "If I have seen further it is by standing on the shoulders of giants"
-      },
-      "created_at": 1461116232227
-    },
-    {
-      "user": {
-        "name": "Descartes",
-        "avatars": {
-          "small":   "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc_50.png",
-          "regular": "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc.png",
-          "large":   "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc_200.png"
-        },
-        "handle": "@rd" },
-      "content": {
-        "text": "Je pense , donc je suis"
-      },
-      "created_at": 1461113959088
-    },
-    {
-      "user": {
-        "name": "Johann von Goethe",
-        "avatars": {
-          "small":   "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1_50.png",
-          "regular": "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1.png",
-          "large":   "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1_200.png"
-        },
-        "handle": "@johann49"
-      },
-      "content": {
-        "text": "Es ist nichts schrecklicher als eine tätige Unwissenheit."
-      },
-      "created_at": 1461113796368
-    }
-  ];
+//   function loadTweets () {
+//   var $button = $('tweet-container');
+//   $button.on('click', function () {
+//     console.log('Button clicked, performing AJAX call...');
+//     $.ajax('"/tweets', { method: 'GET' })
+//     .then(function (renderTweets) {
+//       console.log('Success: ', renderTweets);
+//       $button.replaceWith(renderTweets);
+//     });
+//   });
+// }
 
+function loadTweets(){
+    //load the tweets from the route /tweets - GET
+
+    $.ajax({
+      url: '/tweets',
+      method:'GET',
+      // success:function(result){
+      //   console.log("After ajax call");
+      //   console.log(result);
+      //   renderTweets(result);
+      // },
+      // error: function(error){
+      //   console.log("there was an error");
+      //   console.log(error);
+      // }
+    })
+    .then(renderTweets);
+  }
 
   function createTweetElement(tweet) {
     const $tweet = $("<article>").addClass("tweet");
@@ -64,7 +46,6 @@ $('#document').ready(function(e) {
     $headerimg.attr('src',  small);
     const $headerh2 = $("<h2>").text(name);
     const $headerh3 = $("<h3>").text(handle);
-
     $header.append($headerimg);
     $header.append($headerh2);
     $header.append($headerh3);
@@ -78,13 +59,12 @@ $('#document').ready(function(e) {
     const date = moment(tweet["created_at"]).fromNow();
     const $footer = $("<footer>").text(date);
 
-    // maybe use icons (ex: fontawesome)
+    // NOTE TO SELF: LOOK IN TO USING ICONS (I.E. FONTAWESOME)
     const $footerIMG1 = $('<img src="/images/tweet-icons/heart.png" id="heart">');
     const $footerIMG2 = $('<img src="/images/tweet-icons/refresh.png" id="refresh">');
     const $footerIMG3 = $('<img src="/images/tweet-icons/flag.png" id="flag">');
 
-    // look into jquery object passed to single append (ie: mimic array)
-    // multiple appends start to get hectic
+    // NOTE TO SELF: look into jquery object passed to single append (ie: mimic array)
     $footer.append($footerIMG1);
     $footer.append($footerIMG2);
     $footer.append($footerIMG3);
@@ -94,16 +74,43 @@ $('#document').ready(function(e) {
   }
 
   function renderTweets(tweets) {
-    const $tweets = [];
+    const $tweets = $("#tweet-container");
     for (let tweet of tweets) {
-      $tweets.push(createTweetElement(tweet));
+      $tweets.prepend(createTweetElement(tweet));
     }
-    $("#tweet-container").append($tweets);
+    return $tweets;
   };
 
-  // setInterval(createTweetElement, 2000);
+  var $form = $('#tweetSubmitter').submit(function(event){
+    event.preventDefault();
+    const $textLength = $(".messageText").val().length;
+    if ($textLength === 0 || $(".messageText").val() === " ") {
+      $(".error").text("Please enter a valid Tweet").slideDown();
+      return;
+    } else if ($textLength > 140) {
+      $(".error").text("Please enter less than 140 characters").slideDown();
+      return;
+    } else {
+    $.post('/tweets', $form.serialize())
+      .then(function () {
+        loadTweets();
+        $('#tweetSubmitter').get(0).reset();
+        $('.error').hide();
+      });
+    }
+  })
 
-  renderTweets(data);
+  $("#Compose").click(function() {
+    $(".new-tweet").toggle("slow");
+    $(".messageText").focus();
+  });
 
+  // * TEST CODE TO MIMIC RELOAD * //
+  // setTimeout(() => {
+  //   renderTweets(data)
+  // }, 1000);
+
+  //renderTweets(data)
+  loadTweets();
 
 });
