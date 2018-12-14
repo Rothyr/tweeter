@@ -1,6 +1,4 @@
-/*   NEW TWEET CSS FILE   */
-
-
+/***   NEW TWEET CSS FILE   ***/
 
 .new-tweet {
   background-color: #eee;
@@ -20,17 +18,17 @@
   border-bottom: 2px solid #244751;
 }
 
-  textarea {
+textarea {
   border: 1px solid lightgrey;
   border-radius: 10px;
   padding: 5px;
   width: 100%;
-  }
+}
 
 #submitButton {
   border: 1px solid lightgrey;
   border-radius: 10px;
-  }
+}
 
 .counter {
   float: right;

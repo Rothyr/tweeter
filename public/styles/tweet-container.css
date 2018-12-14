@@ -1,6 +1,5 @@
 /***   Tweet Container CSS File   ***/
 
-
 article.tweet {
   margin-left: 2em;
   margin-right: 2em;
@@ -11,7 +10,7 @@ article.tweet {
 }
 
 article.tweet:hover {
-opacity: 1;
+  opacity: 1;
 }
 
 article.tweet header {
@@ -55,16 +54,15 @@ article.tweet footer {
   font-size: 14px;
 }
 
-article.tweet footer img {
+article.tweet footer .icon {
   float: right;
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   margin-right: 5px;
+  color: #00a087;
   visibility: hidden;
 }
 
-article.tweet:hover footer img {
-visibility: visible;
+article.tweet:hover footer .icon {
+  visibility: visible;
 }
-
-

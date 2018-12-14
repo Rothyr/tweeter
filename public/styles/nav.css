@@ -1,5 +1,4 @@
-/*   NAV BAR CSS FILE   */
-
+/***   NAV BAR CSS FILE   ***/
 
 #nav-bar {
   background-color: #00a087;
@@ -33,7 +32,7 @@
   height: 50px;
   width: 100px;
   margin-top: 15px;
-  border: 1px solid black;
+  border: 2px solid darkgrey;
   border-radius: 5px;
   float: right;
   opacity: 0.7;
@@ -43,7 +42,7 @@
   height: 50px;
   width: 100px;
   margin-top: 15px;
-  border: 1px solid black;
+  border: 2px solid darkgrey;
   border-radius: 5px;
   float: right;
   opacity: 1;

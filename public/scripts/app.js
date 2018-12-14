@@ -1,11 +1,5 @@
-/*
- * Client-side JS logic goes here
- * jQuery is already loaded
- * Reminder: Use (and do all your DOM work in) jQuery's document ready function
- */
-$('#document').ready(function(event) {
-function loadTweets(){
-
+$(document).ready(function(event) {
+  function loadTweets(){
     $.ajax({
       url: '/tweets',
       method:'GET',
@@ -13,12 +7,13 @@ function loadTweets(){
     .then(renderTweets);
   }
 
+  // CREATES TWEET CONTAINER DYNAMICALLY - HEADER, BODY, FOOTER //
   function createTweetElement(tweet) {
     const $tweet = $("<article>").addClass("tweet");
     const $header = $("<header>");
     const { user: { avatars: { small }, name, handle }, content } = tweet;
 
-    //header
+    // HEADER //
     const $headerimg = $('<img id="dynamic">');
     $headerimg.attr('src',  small);
     const $headerh2 = $("<h2>").text(name);
@@ -28,27 +23,23 @@ function loadTweets(){
     $header.append($headerh3);
     $tweet.append($header);
 
-    //body
+    // BODY //
     const $body = $("<p>").text(content.text);
     $tweet.append($body);
 
-    //footer
+    // FOOTER //
     const date = moment(tweet["created_at"]).fromNow();
     const $footer = $("<footer>").text(date);
-
-    // NOTE TO SELF: LOOK IN TO USING ICONS (I.E. FONTAWESOME)
-    const $footerIMG1 = $('<img src="/images/tweet-icons/heart.png" id="heart">');
-    const $footerIMG2 = $('<img src="/images/tweet-icons/refresh.png" id="refresh">');
-    const $footerIMG3 = $('<img src="/images/tweet-icons/flag.png" id="flag">');
-
-    // NOTE TO SELF: look into jquery object passed to single append (ie: mimic array)
-    $footer.append($footerIMG1);
-    $footer.append($footerIMG2);
-    $footer.append($footerIMG3);
+    const $footerIcon1 = $("<i>").addClass("icon fas fa-flag");
+    const $footerIcon2 = $("<i>").addClass("icon fas fa-retweet");
+    const $footerIcon3 = $("<i>").addClass("icon fas fa-heart");
+    $footer.append($footerIcon1);
+    $footer.append($footerIcon2);
+    $footer.append($footerIcon3);
     $tweet.append($footer);
 
     return $tweet;
-  }
+  };
 
   function renderTweets(tweets) {
     const $tweets = $("#tweet-container");
@@ -68,7 +59,7 @@ function loadTweets(){
       $(".error").text("Please enter less than 140 characters").slideDown();
       return;
     } else {
-    $.post('/tweets', $form.serialize())
+      $.post('/tweets', $form.serialize())
       .then(function () {
         loadTweets();
         $('#tweetSubmitter').get(0).reset();
@@ -76,7 +67,7 @@ function loadTweets(){
         $('.counter').text("140");
       });
     }
-  })
+  });
 
   $("#Compose").click(function() {
     $(".new-tweet").toggle("slow");
@@ -84,4 +75,5 @@ function loadTweets(){
   });
 
   loadTweets();
+  
 });

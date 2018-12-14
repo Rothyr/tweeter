@@ -8,6 +8,7 @@ const app           = express();
 const DataHelpersFactory = require("./lib/data-helpers.js");
 const tweetsRoutes = require("./routes/tweets");
 
+//  MONGO SETUP CODE //
 const MongoClient = require('mongodb').MongoClient;
 const MONGODB_URI = "mongodb://localhost:27017/tweeter";
 
@@ -30,5 +31,4 @@ app.use("/tweets", tweetsRoutes(DataHelpers));
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
-});
 });
