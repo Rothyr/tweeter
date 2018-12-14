@@ -14,11 +14,11 @@ $(document).ready(function(event) {
     const { user: { avatars: { small }, name, handle }, content } = tweet;
 
     // HEADER //
-    const $headerimg = $('<img id="dynamic">');
-    $headerimg.attr('src',  small);
+    const $headerImg = $('<img id="dynamic">');
+    $headerImg.attr('src',  small);
     const $headerh2 = $("<h2>").text(name);
     const $headerh3 = $("<h3>").text(handle);
-    $header.append($headerimg);
+    $header.append($headerImg);
     $header.append($headerh2);
     $header.append($headerh3);
     $tweet.append($header);
@@ -75,5 +75,5 @@ $(document).ready(function(event) {
   });
 
   loadTweets();
-  
+
 });
