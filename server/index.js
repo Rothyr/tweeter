@@ -25,10 +25,11 @@ MongoClient.connect(MONGODB_URI, (err, db) => {
   }
   console.log(`Connected to mongodb: ${MONGODB_URI}`);
 
-DataHelpers = DataHelpersFactory(db);
+  DataHelpers = DataHelpersFactory(db);
 
-app.use("/tweets", tweetsRoutes(DataHelpers));
+  app.use("/tweets", tweetsRoutes(DataHelpers));
 
-app.listen(PORT, () => {
-  console.log("Example app listening on port " + PORT);
+  app.listen(PORT, () => {
+    console.log("Example app listening on port " + PORT);
+  });
 });
